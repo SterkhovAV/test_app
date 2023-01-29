@@ -1,5 +1,6 @@
 package ru.sterkhovav.test_app.controllers
 
+import io.swagger.v3.oas.annotations.Hidden
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -9,6 +10,7 @@ import ru.sterkhovav.test_app.service.CustomerServiceImpl
 import ru.sterkhovav.test_app.service.ItemServiceImpl
 import ru.sterkhovav.test_app.service.OrderServiceImpl
 
+@Hidden
 @Controller
 @RequestMapping(path = [REPORTS_REQUEST_PATH])
 class ReportsController(

@@ -1,13 +1,23 @@
-package ru.sterkhovav.test_app.dao.models
+package ru.sterkhovav.test_app.dto
 
+import io.swagger.v3.oas.annotations.Parameter
+import io.swagger.v3.oas.annotations.media.Schema
 import java.util.*
+import javax.validation.constraints.Max
+import javax.validation.constraints.Min
 import javax.xml.bind.annotation.XmlRootElement
 
 
 @XmlRootElement
-class OrderRequest(
+@Schema
+class OrderRequestDto(
+
     var name: String? = null,
+
     var lastName: String? = null,
+    @Parameter(description = "Идентификатор", name = "age", allowEmptyValue = false)
+    @Min(1)
+    @Max(9999999999)
     var age: Int? = null,
     var purchaseItem: Int? = null,
     var count: Int? = null,

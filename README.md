@@ -1,14 +1,15 @@
 # test app
 
-## требуется для запуска
+## Данные для авторизации: логин admin пароль admin
+## server.port=7080 (можно изменить в application.properties)
+
+## Требуется для запуска
 
 - указать в файле "application.properties"
-       spring.datasource.url=адрес БД
-       spring.datasource.username=логин
-       spring.datasource.password=пароль 
+  spring.datasource.url=адрес БД spring.datasource.username=логин spring.datasource.password=пароль
 
-- чтобы не менять логин-пароль-базу можно создать базу и пользователя локально
-  открываем SQL Shell (заходим в базу postgres под логином postgres)
+- чтобы не менять логин-пароль-базу можно создать базу и пользователя локально открываем SQL Shell (заходим в базу
+  postgres под логином postgres)
 
        CREATE DATABASE test_app;
        CREATE USER test_user WITH PASSWORD 'password';
@@ -19,10 +20,5 @@
 
   теперь база и пользователь созданы
 
-- создание таблиц и первоначальное их заполнение происходит посредством liquibase 
+- создание таблиц и первоначальное их заполнение происходит посредством liquibase
   (миграции можно посмотреть тут - src/main/resources/db/changelog)
-
-- логин admin пароль admin
-
-
-

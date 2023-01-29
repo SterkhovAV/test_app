@@ -6,7 +6,7 @@ import org.springframework.http.HttpOutputMessage
 import org.springframework.http.MediaType
 import org.springframework.http.converter.AbstractHttpMessageConverter
 import org.springframework.stereotype.Service
-import ru.sterkhovav.test_app.dao.models.OrderRequest
+import ru.sterkhovav.test_app.dto.OrderRequestDto
 import javax.xml.XMLConstants
 import javax.xml.bind.*
 import javax.xml.transform.stream.StreamSource
@@ -14,27 +14,27 @@ import javax.xml.validation.SchemaFactory
 
 
 @Service
-class OrderRequestConverter : AbstractHttpMessageConverter<OrderRequest>(MediaType.APPLICATION_XML) {
+class OrderRequestConverter : AbstractHttpMessageConverter<OrderRequestDto>(MediaType.APPLICATION_XML) {
     private val schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
 
     override fun supports(clazz: Class<*>): Boolean {
-        return clazz == OrderRequest::class.java
+        return clazz == OrderRequestDto::class.java
     }
 
-    override fun readInternal(clazz: Class<out OrderRequest>, inputMessage: HttpInputMessage): OrderRequest {
+    override fun readInternal(clazz: Class<out OrderRequestDto>, inputMessage: HttpInputMessage): OrderRequestDto {
         return try {
-            val jaxbContext = JAXBContext.newInstance(OrderRequest::class.java)
+            val jaxbContext = JAXBContext.newInstance(OrderRequestDto::class.java)
             val jaxbUnmarshaller = jaxbContext.createUnmarshaller()
             jaxbUnmarshaller.eventHandler = OrdersRequestValidator()
             jaxbUnmarshaller.schema =
                 schemaFactory.newSchema(StreamSource(OrderRequestConverter::class.java.getResourceAsStream("/orderRequest.xsd")))
-            jaxbUnmarshaller.unmarshal(inputMessage.body) as OrderRequest
+            jaxbUnmarshaller.unmarshal(inputMessage.body) as OrderRequestDto
         } catch (e: UnmarshalException) {
             throw ValidationException(e.message ?: "Unexpected error")
         }
     }
 
-    override fun writeInternal(p0: OrderRequest, p1: HttpOutputMessage) {
+    override fun writeInternal(p0: OrderRequestDto, p1: HttpOutputMessage) {
         TODO("Пока только принимаем")
     }
 }
