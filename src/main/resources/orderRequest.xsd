@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="names">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="50"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="age">
+        <xs:restriction base="xs:int">
+            <xs:minExclusive value="0"/>
+            <xs:maxExclusive value="150"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="items">
+        <xs:restriction base="xs:int">
+            <xs:minExclusive value="0"/>
+            <xs:maxExclusive value="6"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="count">
+        <xs:restriction base="xs:int">
+            <xs:minExclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="amount">
+        <xs:restriction base="xs:decimal">
+            <xs:minExclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="orderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="names"/>
+                <xs:element name="lastName" type="names"/>
+                <xs:element name="age" type="age" />
+                <xs:element name="purchaseItem" type="items"/>
+                <xs:element name="count" type="count"/>
+                <xs:element name="amount" type="amount"/>
+                <xs:element name="purchaseDate" type="xs:dateTime"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+

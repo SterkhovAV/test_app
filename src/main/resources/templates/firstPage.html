@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Test-app</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/default.css" type="text/css" media="screen,projection"/>
+</head>
+<body>
+<div id="sidebar">
+    <h1>Отчеты</h1>
+    <ol id="nav">
+        <li><a href="/">Все покупки</a></li>
+        <li><a href="/reports/last-week-orders">Список покупок за последнюю неделю</a></li>
+        <li><a href="/reports/monthly-most-popular">Самый покупаемый товар за последний месяц</a></li>
+        <li><a href="/reports/half-year-customer">Лучший покупатель полугодия (больше всего потратил)</a></li>
+        <li><a href="/reports/eighteen-year-choice">Чаще всего покупают в возрасте 18 лет</a></li>
+    </ol>
+</div>
+<div id="content">
+    <h2 class="first">Все покупки</h2>
+    <div th:each="ords : ${ordersList}">
+        <br> Имя:
+        <a t th:text="${ords.getCustomer().getName()}">res</a>
+        <br> Фамилия:
+        <a t th:text="${ords.getCustomer().getLastName()}">res</a>
+        <br> Возраст:
+        <a t th:text="${ords.getCustomer().getAge()}">res</a>
+        <br> Содержимое покупки:
+        <a t th:text="${ords.getPurchaseItem().getName()}">res</a>
+        <br> Количество товара:
+        <a t th:text="${ords.getCount()}">res</a>
+        <br> Сумма покупки:
+        <a t th:text="${ords.getAmount()}">res</a>
+        <br> Дата покупки:
+        <a t th:text="${#temporals.format(ords.getPurchaseDate(), 'dd-MM-yyyy HH:mm')}">res</a>
+        <br>
+    </div>
+</div>
+</body>
+</html>

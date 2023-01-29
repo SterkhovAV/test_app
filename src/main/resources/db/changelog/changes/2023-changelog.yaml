@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-orders-items-customers-tables
+      author: sterkhovav
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: sql/2023-01-27-1_orders_items_customers_tables.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+  - changeSet:
+      id: create-orders-items-customers-data
+      author: sterkhovav
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: sql/2023-01-27-2_order_items_customers_data.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+  - changeSet:
+      id: create-simple-users-table-data
+      author: sterkhovav
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: sql/2023-01-27-3_simple_user_table_data.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
