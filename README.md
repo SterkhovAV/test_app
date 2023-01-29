@@ -1,7 +1,8 @@
 # test app
 
-## требуется для запуска
+## Данные для авторпизации: логин admin пароль admin
 
+## Требуется для запуска
 - указать в файле "application.properties"
        spring.datasource.url=адрес БД
        spring.datasource.username=логин
@@ -22,7 +23,7 @@
 - создание таблиц и первоначальное их заполнение происходит посредством liquibase 
   (миграции можно посмотреть тут - src/main/resources/db/changelog)
 
-- логин admin пароль admin
+
 
 
 
