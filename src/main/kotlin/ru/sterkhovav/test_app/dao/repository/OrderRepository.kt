@@ -13,9 +13,9 @@ interface OrderRepository : JpaRepository<Order, Long> {
         value = """
             SELECT * FROM orders WHERE purchase_date >= (NOW() - INTERVAL '1 week')
         """,
-        countQuery = """
-            SELECT COUNT(*) FROM orders WHERE purchase_date >= (NOW() - INTERVAL '1 week')
-        """,
+//        countQuery = """
+//            SELECT COUNT(*) FROM orders WHERE purchase_date >= (NOW() - INTERVAL '1 week')
+//        """,
         nativeQuery = true
     )
     fun getOrdersByPurchaseDateIsBeforeLastWeek(): List<Order>
