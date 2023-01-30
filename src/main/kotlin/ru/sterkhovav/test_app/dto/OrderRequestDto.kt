@@ -9,8 +9,15 @@ import javax.xml.bind.annotation.XmlRootElement
 
 
 @XmlRootElement
-@Schema
+@Schema(name = "orderRequestDto")
 class OrderRequestDto(
+//    @field:Schema(
+//        description = "A year when this car was made",
+//        example = "2021",
+//        type = "int",
+//        minimum = "1900",
+//        maximum = "2500"
+//    )
     var name: String? = null,
     var lastName: String? = null,
     var age: Int? = null,
