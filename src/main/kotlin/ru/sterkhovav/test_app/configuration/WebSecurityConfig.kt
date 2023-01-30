@@ -23,7 +23,7 @@ class WebSecurityConfig(
             .antMatchers("/login", "/purchase-info/new-order").permitAll()
             .anyRequest().authenticated()
             .and().formLogin().loginProcessingUrl("/login")
-            .defaultSuccessUrl("/", true)
+            .defaultSuccessUrl("/")
     }
 
     @Throws(Exception::class)
