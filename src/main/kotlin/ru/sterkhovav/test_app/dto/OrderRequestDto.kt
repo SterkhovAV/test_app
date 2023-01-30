@@ -11,13 +11,8 @@ import javax.xml.bind.annotation.XmlRootElement
 @XmlRootElement
 @Schema
 class OrderRequestDto(
-
     var name: String? = null,
-
     var lastName: String? = null,
-    @Parameter(description = "Идентификатор", name = "age", allowEmptyValue = false)
-    @Min(1)
-    @Max(9999999999)
     var age: Int? = null,
     var purchaseItem: Int? = null,
     var count: Int? = null,
