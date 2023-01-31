@@ -1,7 +1,6 @@
 package ru.sterkhovav.test_app.controllers
 
 import io.swagger.v3.oas.annotations.Operation
-import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.media.ArraySchema
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.ExampleObject
@@ -19,7 +18,10 @@ import org.springframework.web.bind.annotation.RestController
 import ru.sterkhovav.test_app.controllers.endpoints.PURCHASE_INFO_REQUEST_PATH
 import ru.sterkhovav.test_app.dto.OrderRequestDto
 import ru.sterkhovav.test_app.service.OrderServiceImpl
-import java.awt.print.Book
+import ru.sterkhovav.test_app.utils.saveOrderRequestCorrect
+import ru.sterkhovav.test_app.utils.saveOrderRequestIncorrectTag
+import ru.sterkhovav.test_app.utils.saveOrderRequestIncorrectValue
+import ru.sterkhovav.test_app.utils.saveOrderRequestIncorrectValueRange
 
 
 @Tag(name = "Контроллер обработки заказов")
@@ -35,32 +37,32 @@ class OrdersController(
             ApiResponse(
                 responseCode = "200", description = "Successful Operation",
                 content = [Content(
-                    mediaType = MediaType.APPLICATION_XML_VALUE, array = (
+                    mediaType = MediaType.APPLICATION_JSON_VALUE, array = (
                             ArraySchema(
-                                schema = Schema(implementation = OrderRequestDto::class)
+                                schema = Schema(implementation = OrderRequestDto::class, type = "orderRequestDto")
                             )),
-                    examples = [ExampleObject(name = "Correct XML")]
+                    examples = [ExampleObject(name = "Correct XML", value = saveOrderRequestCorrect)]
                 )]
             ),
             ApiResponse(
                 responseCode = "500", description = "Something went wrong",
                 content = [Content(
-                    mediaType = MediaType.APPLICATION_XML_VALUE, array = (
+                    mediaType = MediaType.APPLICATION_JSON_VALUE, array = (
                             ArraySchema(
                                 schema = Schema(implementation = OrderRequestDto::class)
                             )),
                     examples = [
-                        ExampleObject(name = "Incorrect value type"),
-                        ExampleObject(name = "Incorrect tags"),
-                        ExampleObject(name = "Incorrect value range")]
+                        ExampleObject(name = "Incorrect value type", value = saveOrderRequestIncorrectValue),
+                        ExampleObject(name = "Incorrect tags", value = saveOrderRequestIncorrectTag),
+                        ExampleObject(name = "Incorrect value range", value = saveOrderRequestIncorrectValueRange)]
                 )]
             ),
         ]
     )
-    fun getPerson(
+    fun saveOrderRequest(
         @RequestBody orderRequestDto: OrderRequestDto
     ): ResponseEntity<HttpStatus> {
         orderServiceImpl.saveRequestOrder(orderRequestDto)
-        return ResponseEntity.ok(HttpStatus.OK)
+        return ResponseEntity.ok(HttpStatus.ACCEPTED)
     }
 }
